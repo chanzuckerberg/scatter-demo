@@ -23,7 +23,7 @@ const generatePoints = require('./data/points')
 const generateColors = require('./data/colors')
 
 // set constants
-const count = 1e5
+const count = 3e4
 
 // preallocate buffers
 const pointBuffer = regl.buffer(count)(generatePoints(count))
