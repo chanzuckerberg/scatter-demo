@@ -4,9 +4,16 @@ const fit = require('canvas-fit')
 
 // setup canvas and camera
 const canvas = document.body.appendChild(document.createElement('canvas'))
+css(canvas, {zIndex: -1000})
 const regl = require('regl')(canvas)
 const camera = require('./camera.js')(canvas, {scale: true, rotate: false})
 window.addEventListener('resize', fit(canvas), false)
+
+// add explanation
+const div = document.createElement('h1')
+div.innerHTML = 'press spacebar to change'
+css(div, {'font-family': 'monospace', 'text-align': 'center'})
+document.body.appendChild(div)
 
 // import draw functions
 const drawPoints = require('./draw/points')(regl)
