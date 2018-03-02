@@ -1,5 +1,3 @@
-const mat4 = require('gl-mat4')
-
 module.exports = function (regl) {
   return regl({
     vert: `
@@ -11,8 +9,8 @@ module.exports = function (regl) {
     varying vec3 fragColor;
     void main() {
       gl_PointSize = 30.0 / pow(distance, 2.5);
-      gl_Position = projection * view * vec4(position.x, -position.y, 0, 1);
-      fragColor = color;
+      gl_Position = projection * view * vec4(position.x, position.y, 0, 1);
+      fragColor = vec3(position.x * 2.0, position.y * 2.0, 1);
     }`,
 
     frag: `
@@ -33,11 +31,7 @@ module.exports = function (regl) {
     uniforms: {
       distance: regl.prop('distance'),
       view: regl.prop('view'),
-      projection: (context, props) =>
-        mat4.perspective([],
-          Math.PI / 2,
-          context.viewportWidth * props.scale / context.viewportHeight,
-          0.01, 1000),
+      projection: regl.prop('projection')
     },
 
     count: regl.prop('count'),

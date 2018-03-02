@@ -23,7 +23,7 @@ const generatePoints = require('./data/points')
 const generateColors = require('./data/colors')
 
 // set constants
-const count = 3e4
+const count = 3e2
 
 // preallocate buffers
 const pointBuffer = regl.buffer(count)(generatePoints(count))
@@ -50,7 +50,10 @@ regl.frame(({viewportWidth, viewportHeight, time}) => {
     position: pointBuffer,
     count: count,
     view: camera.view(),
-    scale: viewportHeight/viewportWidth
+    projection: mat4.perspective([],
+      Math.PI / 2,
+      viewportWidth / viewportHeight,
+      0.01, 1000),
   })
   
   camera.tick()

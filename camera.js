@@ -38,8 +38,8 @@ function attachCamera(canvas, opts) {
 
     if (opts.rotate && mbut.left && ctrl && !alt) {
       camera.rotate(
-          [ mpos.x / width - 0.5, mpos.y / height - 0.5 ]
-        , [ mpos.prevX / width - 0.5, mpos.prevY / height - 0.5 ]
+          [ mpos[0] / width - 0.5, mpos[1] / height - 0.5 ]
+        , [ mpos.prev[0] / width - 0.5, mpos.prev[1] / height - 0.5 ]
       )
     }
 
@@ -55,7 +55,7 @@ function attachCamera(canvas, opts) {
     }
 
     if (opts.scale && (mbut.middle || (mbut.left && !ctrl && alt))) {
-      var d = (mpos.y - mpos.prevY)
+      var d = (mpos[1] - mpos.prev[1])
       if (!d) return;
 
       camera.distance *= Math.exp(d / height)
