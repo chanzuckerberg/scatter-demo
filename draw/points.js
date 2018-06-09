@@ -8,9 +8,9 @@ module.exports = function (regl) {
     uniform mat4 projection, view;
     varying vec3 fragColor;
     void main() {
-      gl_PointSize = 30.0 / pow(distance, 2.5);
+      gl_PointSize = 70.0 / pow(distance, 2.5);
       gl_Position = projection * view * vec4(position.x, position.y, 0, 1);
-      fragColor = vec3(position.x * 2.0, position.y * 2.0, 1);
+      fragColor = color;
     }`,
 
     frag: `

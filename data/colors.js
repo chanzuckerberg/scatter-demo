@@ -3,7 +3,7 @@ module.exports = function (count) {
     return [
       Math.random(), 
       Math.random(),
-      Math.random()
+      1
     ]
   }) 
 }
